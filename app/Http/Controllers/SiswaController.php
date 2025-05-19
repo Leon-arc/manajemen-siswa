@@ -100,4 +100,9 @@ class SiswaController extends Controller
         $siswa->delete();
         return redirect()->route('siswas.index')->with('success', 'Data berhasil dihapus.');
     }
+
+    public function show(Siswa $siswa)
+    {
+        return view('siswas.show', compact('siswa'));
+    }
 }

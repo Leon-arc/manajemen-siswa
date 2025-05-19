@@ -30,3 +30,5 @@ use App\Http\Controllers\SiswaController;
 // Route Resource untuk CRUD
 Route::resource('siswas', SiswaController::class);
 
+Route::get('/siswas/{siswa}/show', [SiswaController::class, 'show'])->name('siswas.show');
+
