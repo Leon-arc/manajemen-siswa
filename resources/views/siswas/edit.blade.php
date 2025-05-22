@@ -18,7 +18,7 @@
     <div class="h-1 w-full bg-gradient-to-r from-amber-600 to-orange-600 rounded-full mt-4"></div>
 </div>
 
-<form action="{{ route('siswas.update', $siswa) }}" method="POST">
+<form action="{{ route('siswas.update', $siswa) }}" method="POST" enctype="multipart/form-data">
     @csrf @method('PUT')
     @include('siswas._form')
 </form>

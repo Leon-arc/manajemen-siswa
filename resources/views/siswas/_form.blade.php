@@ -182,6 +182,40 @@
                                 </div>
                             </div>
 
+                            <div class="md:col-span-2 space-y-6">
+                                <div class="form-group transform transition-all duration-200 ease-in-out hover:scale-[1.01]">
+                                    <label for="foto" class="block text-sm font-semibold text-indigo-700 mb-2">Foto Siswa</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <svg class="h-5 w-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="pl-10 w-full">
+                                            <input type="file"
+                                                name="foto"
+                                                id="foto"
+                                                accept="image/*"
+                                                class="w-full h-12 rounded-xl border-2 border-indigo-200 focus:border-indigo-500 focus:ring focus:ring-indigo-200 transition-all hover:border-indigo-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-indigo-50 file:text-indigo-700 file:font-medium hover:file:bg-indigo-100 @error('foto') border-red-500 @enderror">
+                                            <div class="mt-2 text-sm text-gray-500">Upload foto siswa (JPG, PNG, max 2MB)</div>
+                                            @if(isset($siswa) && $siswa->foto)
+                                                <div class="mt-2">
+                                                    <p class="text-sm text-gray-500">Foto saat ini: <span class="text-indigo-600 font-medium">{{ basename($siswa->foto) }}</span></p>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    @error('foto')
+                                    <p class="mt-1 text-sm text-red-500 flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                        </svg>
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!-- Action Buttons spanning full width -->
                             <div class="md:col-span-2">
                                 <div class="flex flex-col sm:flex-row gap-4 mt-8 pt-6 border-t border-gray-100">

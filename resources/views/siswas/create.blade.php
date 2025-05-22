@@ -51,7 +51,7 @@
         <!-- Form Card -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100/80 overflow-hidden">
             <div class="p-6">
-                <form action="{{ route('siswas.store') }}" method="POST">
+                <form action="{{ route('siswas.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @include('siswas._form')
                 </form>

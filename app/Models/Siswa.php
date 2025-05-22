@@ -10,5 +10,5 @@ class Siswa extends Model
     use HasFactory;
 
     // Kolom yang bisa diisi (mass assignment)
-    protected $fillable = ['nama', 'nis', 'kelas', 'alamat'];
+    protected $fillable = ['nama', 'nis', 'kelas', 'alamat', 'foto'];
 }

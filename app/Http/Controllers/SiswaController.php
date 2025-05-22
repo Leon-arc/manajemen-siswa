@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -68,7 +69,14 @@ class SiswaController extends Controller
             'nis' => 'required|string|unique:siswas|max:20',
             'kelas' => 'required|string|max:50',
             'alamat' => 'required|string',
+            'foto' => 'nullable|image|max:2048', // Max 2MB
         ]);
+
+        // Handle file upload
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('siswa-photos', 'public');
+            $validated['foto'] = $fotoPath;
+        }
 
         Siswa::create($validated);
         return redirect()->route('siswas.index')->with('success', 'Data berhasil disimpan.');
@@ -88,7 +96,19 @@ class SiswaController extends Controller
             'nis' => 'required|string|unique:siswas,nis,' . $siswa->id . '|max:20',
             'kelas' => 'required|string|max:50',
             'alamat' => 'required|string',
+            'foto' => 'nullable|image|max:2048', // Max 2MB
         ]);
+
+        // Handle file upload
+        if ($request->hasFile('foto')) {
+            // Delete old photo if exists
+            if ($siswa->foto && Storage::disk('public')->exists($siswa->foto)) {
+                Storage::disk('public')->delete($siswa->foto);
+            }
+            
+            $fotoPath = $request->file('foto')->store('siswa-photos', 'public');
+            $validated['foto'] = $fotoPath;
+        }
 
         $siswa->update($validated);
         return redirect()->route('siswas.index')->with('success', 'Data berhasil diupdate.');
